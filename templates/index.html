@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQI Forecaster</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AQI Forecast System</h1>
+            <p>Enter pollutant levels to predict the Air Quality Index</p>
+        </header>
+
+        <form action="{{ url_for('predict') }}" method="post" class="predict-form">
+            <div class="input-grid">
+                {% for feature in features %}
+                <div class="input-group">
+                    <label for="{{ feature }}">{{ feature }}</label>
+                    <input type="number" step="0.01" name="{{ feature }}" id="{{ feature }}" placeholder="Value for {{ feature }}" required>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn-predict">Analyze Air Quality</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result-card" style="border-top: 5px solid {{ category_color }}">
+            <h2>{{ prediction_text }}</h2>
+            <div class="category" style="color: {{ category_color }}">
+                Status: {{ aqi_category }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

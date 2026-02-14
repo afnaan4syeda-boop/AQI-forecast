@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Data and Artifacts
+*.zip
+dataset/
+archive1/
+archive2/
+hf_space/
+aqi_dataset.csv
+
+# Large Model Files
+model.joblib
+features.joblib
+
+# OS
+.DS_Store
+Thumbs.db
